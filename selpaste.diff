@@ -1,0 +1,21 @@
+diff --git a/x.c b/x.c
+index 8bf998e..66ae24b 100644
+--- a/x.c
++++ b/x.c
+@@ -690,11 +690,13 @@ brelease(XEvent *e)
+                mousereport(e);
+                return;
+        }
+-
+-       if (mouseaction(e, 1))
+-               return;
++
++  // copy on left click
+        if (e->xbutton.button == Button1)
+                mousesel(e, 1);
++  // paste on right click
++  else if (e->xbutton.button == Button3)
++    selpaste(NULL);
+ }
+
+ void
